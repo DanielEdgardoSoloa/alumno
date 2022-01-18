@@ -17,7 +17,7 @@
           <div class="datosPersonales">
             <form action="tablaAlumnos.php" method="POST">
               <br/><br/>
-              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Acciones" class="enviar" >
+              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Alumnos" class="enviar" >
             </form>
           </div>
         </div>
