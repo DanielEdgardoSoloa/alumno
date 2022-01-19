@@ -47,7 +47,7 @@
                 $mostrar2=null;
                 if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaAlumnos.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                   $sql2="SELECT * FROM ALUMNOS1 WHERE alu_dni=".$_GET['id'];
+                   $sql2="SELECT * FROM ALUMNOS WHERE alu_dni=".$_GET['id'];
                    $resultado2= mysqli_query($conexion, $sql2);
                    $mostrar2= mysqli_fetch_array($resultado2);
                  }
@@ -55,7 +55,7 @@
                {$mostrar2=null;
                 if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaAlumnos.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                   $sql2="SELECT * FROM ALUMNOS1 WHERE alu_dni=".$_GET['id'];
+                   $sql2="SELECT * FROM ALUMNOS WHERE alu_dni=".$_GET['id'];
                    $resultado2= mysqli_query($conexion, $sql2);
                    $mostrar2= mysqli_fetch_array($resultado2); 
                    Borrar();
@@ -78,7 +78,7 @@
               </tr>
               <?php
                 $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                $sql='SELECT * FROM ALUMNOS1';
+                $sql='SELECT * FROM ALUMNOS';
                 $resultado= mysqli_query($conexion, $sql);
                 while($mostrar= mysqli_fetch_array($resultado)){
               ?>
