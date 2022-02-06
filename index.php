@@ -19,6 +19,14 @@
               <br/><br/>
               <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Alumnos" class="enviar" >
             </form>
+            <form action="tablaProfesores.php" method="POST">
+              <br/><br/>
+              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Profesores" class="enviar" >
+            </form>
+            <form action="notas.php" method="POST">
+              <br/><br/>
+              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Notas" class="enviar" >
+            </form>  
           </div>
         </div>
     </body>
