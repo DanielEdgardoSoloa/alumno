@@ -13,7 +13,10 @@
                padding-left: 23px; 
             }
             .p4{
-                padding-left: 100px;
+                padding-left: 30px;
+            }
+            .p5{
+                padding-left: 57px;
             }
             .negrita{
                 color:#FF3333;
@@ -71,6 +74,31 @@
         
           </div>
         </div>
+        <div class="notas">
+          <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+            <h5 class="p4" class="text-success">NOTAS ALUMNOS </h5>
+            <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
+            <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php echo $mostrar2[1]?>" id="nombre"class="text"></p> 
+            <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php echo $mostrar2[2]?>" id="apellido" class="text"></p>
+            <p class="p4" class="text-success">MATERIA:<input type="text" name="materia" value="<?php echo $mostrar2[2]?>" id="materia" class="text"></p>
+            <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[2]?>" id="nota" class="text"></p>
+            <br/>
+            <?php  
+            if ($controlBtnAct )
+             {?>
+            <spam>
+             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarForm()" class="enviar" class="modificar">
+            </spam>
+             <?php }else { ?>
+            <spam>
+             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarForm()" class="enviar">
+            </spam>
+                <?php } ?>
+          </form>  
+            <div id="error" class="negrita">
+            </div>    
+        </div>
+      <script src="valid.js"></script> 
     </body>
 </html>
 

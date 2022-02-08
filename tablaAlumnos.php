@@ -29,7 +29,7 @@
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
     <body class="bg-secondary">
-     <!-- Bloque de control de botones y enlaces clicados-->
+     <!-- Bloque de control de botones y enlaces clickeados-->
        <?php
          $controlBtnAct=false;
          include 'Accion.php';
@@ -105,7 +105,7 @@
       <!--Bloque de form para Insert y Update alumnos-->
         <div class="datosPersonales">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
-            <h5 class="p4" class="text-success">DATOS PERSONALES </h5>
+            <h5 class="p4" class="text-success">DATOS ALUMNOS </h5>
             <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
             <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php echo $mostrar2[1]?>" id="nombre"class="text"></p> 
             <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php echo $mostrar2[2]?>" id="apellido" class="text"></p> 
