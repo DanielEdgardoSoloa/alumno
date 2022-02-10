@@ -114,11 +114,11 @@
             if ($controlBtnAct )
              {?>
             <spam>
-             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarForm()" class="enviar" class="modificar">
+             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarFormA()" class="enviar" class="modificar">
             </spam>
              <?php }else { ?>
             <spam>
-             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarForm()" class="enviar">
+             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarFormA()" class="enviar">
             </spam>
                 <?php } ?>
           </form>  

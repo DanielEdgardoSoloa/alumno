@@ -1,14 +1,17 @@
 var dni = document.getElementById("dni");
 var nombre = document.getElementById("nombre");
 var apellido = document.getElementById("apellido");
+var titulo = document.getElementById("titulo");
 var error = document.getElementById("error");
 
-function EnviarForm(){
+function EnviarFormA(){
     console.log('Enviando form');
    var control = true;
    var mensajeError = [];
    var soloNumeros=/^[0-9]+$/;
    var soloLetra=/^[A-z]+$/;
+  // var soloLetrayespacio=/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ.]+$/;
+   
    
    /*if(!(soloNumeros.test(dni.value))){
        mensajeError.push('Dni no es numérico');
@@ -30,6 +33,7 @@ function EnviarForm(){
    }else{ 
         
        }*/  
+    
    if(dni.value === null || dni.value === ''){
        mensajeError.push('Ingrese su dni');
        control = false;
@@ -60,7 +64,90 @@ function EnviarForm(){
    }else{ 
        }
    }
+   /*if(titulo.value === null || titulo.value === ''){
+       mensajeError.push('Ingrese su título');
+       control = false;
+   }else{
+       if(!(soloLetrayespacio.test(titulo.value))){
+       mensajeError.push('En Título ingrese solo letras');
+       control = false;
+   }else{ 
+       }
+   }*/
+  error.innerHTML = mensajeError.join(', ');
+   //error=null;
+   return control;
+}
+function EnviarFormP(){
+    console.log('Enviando form');
+   var control = true;
+   var mensajeError = [];
+   var soloNumeros=/^[0-9]+$/;
+   var soloLetra=/^[A-z]+$/;
+   var soloLetrayespacio=/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ.]+$/;
    
+   
+   /*if(!(soloNumeros.test(dni.value))){
+       mensajeError.push('Dni no es numérico');
+       control = false;
+   }else{ 
+        
+       }
+   
+   if(!(soloLetra.test(nombre.value))){
+       mensajeError.push('En Nombre ingrese solo letras');
+       control = false;
+   }else{ 
+        
+       }
+   
+   if(!(soloLetra.test(apellido.value))){
+       mensajeError.push('En Apellido ingrese solo letras');
+       control = false;
+   }else{ 
+        
+       }*/  
+    
+   if(dni.value === null || dni.value === ''){
+       mensajeError.push('Ingrese su dni');
+       control = false;
+   }else{
+       if(!(soloNumeros.test(dni.value))){
+          mensajeError.push('Dni no es numérico,ingrese DNI válido');
+          control = false;
+       }else{ 
+       }
+   }
+   if(nombre.value === null || nombre.value === ''){
+       mensajeError.push('Ingrese su nombre');
+       control = false;
+   }else{
+       if(!(soloLetra.test(nombre.value))){
+       mensajeError.push('En Nombre ingrese solo letras');
+       control = false;
+   }else{ 
+       }
+   }
+   if(apellido.value === null || apellido.value === ''){
+       mensajeError.push('Ingrese su apellido');
+       control = false;
+   }else{
+       if(!(soloLetra.test(apellido.value))){
+       mensajeError.push('En Apellido ingrese solo letras');
+       control = false;
+   }else{ 
+       }
+   }
+   if(titulo.value === null || titulo.value === ''){
+       mensajeError.push('Ingrese su título');
+       control = false;
+   }else{
+       if(!(soloLetrayespacio.test(titulo.value))){
+       mensajeError.push('En Título ingrese solo letras');
+       control = false;
+   }else{ 
+       }
+   }
   error.innerHTML = mensajeError.join(', ');
    //error=null;
    return control;
