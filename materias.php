@@ -1,10 +1,10 @@
 <html>
     <head>
        <meta charset="UTF-8">
-       <title>Tabla Profesores</title> 
+       <title>Materias</title> 
        <style>
             .p1{
-               padding-left: 67px; 
+               padding-left: 34px; 
             }
             .p2{
                padding-left: 32px; 
@@ -13,10 +13,13 @@
                padding-left: 23px; 
             }
             .p4{
-                padding-left: 39px;
+                padding-left: 75px;
+            }
+            .p5{
+                padding-left: 30px;
             }
             .p6{
-                padding-left: 100px;
+                padding-left: 150px;
             }
             .negrita{
                 color:#FF3333;
@@ -68,22 +71,23 @@
              }
         ?>
         <!-- Bloque de Tabla Alumnos que se actualiza dinámicamente-->   
-        <div class="tablaProfesores">
-          <h1>TABLA PROFESORES</h1>
+        <div class="notas">
+          <h1>Materias</h1>
           <div class="opciones" class="tabla">
             <table border="1" class="table table-dark"> 
               <tr>
-                <td>DNI</td>
+                <td>COD. MATERIA</td>
+                <td>MATERIA</td>
+                <td>DNI PROFESOR</td> 
                 <td>NOMBRE</td>
-                <td>APELLIDO</td> 
-                <td>TITULO</td>
+                <td>APELLIDO</td>
                 <td>ACTUALIZAR</td>
                 <td>BORRAR</td>
               </tr>
-              
+              <!--
               <?php
                 $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                $sql='SELECT * FROM PROFESOR';
+                $sql='SELECT * FROM ALUMNOS';
                 $resultado= mysqli_query($conexion, $sql);
                 while($mostrar= mysqli_fetch_array($resultado)){
               ?>
@@ -92,13 +96,14 @@
                 <td><?php echo $mostrar[1]?></td>
                 <td><?php echo $mostrar[2]?></td>
                 <td><?php echo $mostrar[3]?></td>
-                <td ><a href="tablaProfesores.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
-                <td ><a href="tablaProfesores.php?accion=Borrar&&id=<?php echo $mostrar[0]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
+                <td><?php echo $mostrar[4]?></td>
+                <td ><a href="tablaAlumnos.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
+                <td ><a href="tablaAlumnos.php?accion=Borrar&&id=<?php echo $mostrar[0]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
               </tr>
               <?php
               }
               ?>
-              
+              -->
             </table>
             <br/>
             <form action="index.php" method="POST">
@@ -109,31 +114,29 @@
         
           </div>
         </div>
-     <!--Bloque de form para Insert y Update profesores-->
-        <div class="datosProfesores">
+        <div class="notas">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
-            <h5 class="p6" class="text-success">DATOS PROFESORES </h5>
-            <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
-            <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php echo $mostrar2[1]?>" id="nombre"class="text"></p> 
-            <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php echo $mostrar2[2]?>" id="apellido" class="text"></p>
-            <p class="p4" class="text-success">TITULO:<input type="text" name="titulo" value="<?php echo $mostrar2[3]?>" id="titulo" class="text"></p>
+            <h5 class="p6" class="text-success">Materias </h5>
+            <p class="p1" class="text-success">COD. MATERIA:<input type="text" name=codmateria value="<?php echo $mostrar2[0]?>" id="codmateria"class="text"></p>
+            <p class="p4" class="text-success">MATERIA:<input type="text" name="materia" value="<?php echo $mostrar2[2]?>" id="materia" class="text"></p>
+            <p class="p5" class="text-success">DNI PROFESOR:<input type="text" name="dniprofesor" value="<?php echo $mostrar2[2]?>" id="dniprofesor" class="text"></p>
             <br/>
             <?php  
             if ($controlBtnAct )
              {?>
             <spam>
-             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarFormP()" class="enviar" class="modificar">
+             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarForm()" class="enviar" class="modificar">
             </spam>
              <?php }else { ?>
             <spam>
-             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarFormP()" class="enviar">
+             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarForm()" class="enviar">
             </spam>
                 <?php } ?>
           </form>  
             <div id="error" class="negrita">
             </div>    
         </div>
-      <script src="valid.js"></script>  
+      <script src="valid.js"></script> 
     </body>
 </html>
 

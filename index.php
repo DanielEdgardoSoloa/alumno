@@ -23,6 +23,10 @@
               <br/><br/>
               <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Profesores" class="enviar" >
             </form>
+            <form action="materias.php" method="POST">
+              <br/><br/>
+              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Materias" class="enviar" >
+            </form>  
             <form action="notas.php" method="POST">
               <br/><br/>
               <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Notas" class="enviar" >
