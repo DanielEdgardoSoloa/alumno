@@ -84,10 +84,10 @@
                 <td>ACTUALIZAR</td>
                 <td>BORRAR</td>
               </tr>
-              <!--
+              
               <?php
                 $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                $sql='SELECT * FROM ALUMNOS';
+                $sql='SELECT alu_dni, alu_nombre, alu_apellido, mat_nombre, alumat_notas FROM alumnos, alumat, materias WHERE alu_dni=alumat_alu_dni AND alumat_mat_cod=mat_cod';
                 $resultado= mysqli_query($conexion, $sql);
                 while($mostrar= mysqli_fetch_array($resultado)){
               ?>
@@ -97,13 +97,13 @@
                 <td><?php echo $mostrar[2]?></td>
                 <td><?php echo $mostrar[3]?></td>
                 <td><?php echo $mostrar[4]?></td>
-                <td ><a href="tablaAlumnos.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
-                <td ><a href="tablaAlumnos.php?accion=Borrar&&id=<?php echo $mostrar[0]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
+                <td ><a href="notas.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
+                <td ><a href="notas.php?accion=Borrar&&id=<?php echo $mostrar[0]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
               </tr>
               <?php
               }
               ?>
-              -->
+              
             </table>
             <br/>
             <form action="index.php" method="POST">
