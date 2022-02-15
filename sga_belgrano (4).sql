@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-02-2022 a las 21:26:30
+-- Tiempo de generación: 15-02-2022 a las 22:31:53
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -29,11 +29,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `alumat` (
-  `alumat_id` int(11) NOT NULL,
+  `alumat_id` int(10) UNSIGNED NOT NULL,
   `alumat_alu_dni` int(11) NOT NULL,
   `alumat_mat_cod` int(11) NOT NULL,
   `alumat_notas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `alumat`
+--
+
+INSERT INTO `alumat` (`alumat_id`, `alumat_alu_dni`, `alumat_mat_cod`, `alumat_notas`) VALUES
+(1, 16222796, 1, 10),
+(2, 16222796, 2, 9),
+(3, 16222796, 3, 10),
+(4, 16222796, 4, 9),
+(5, 15333791, 1, 7),
+(6, 15333791, 2, 8),
+(7, 15333791, 3, 9),
+(8, 15333791, 4, 10);
 
 -- --------------------------------------------------------
 
@@ -68,6 +82,16 @@ CREATE TABLE `materias` (
   `mat_prof_dni` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `materias`
+--
+
+INSERT INTO `materias` (`mat_cod`, `mat_nombre`, `mat_prof_dni`) VALUES
+(1, 'Base de Datos', 22222222),
+(2, 'Diseño', 33333333),
+(3, 'Matematicas', 44444444),
+(4, 'Programacion', 55555555);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +104,16 @@ CREATE TABLE `profesor` (
   `prof_apellido` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
   `prof_titulo` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `profesor`
+--
+
+INSERT INTO `profesor` (`prof_dni`, `prof_nombre`, `prof_apellido`, `prof_titulo`) VALUES
+(22222222, 'Julio', 'Vargas', 'Lic. en InformÃ¡tica'),
+(33333333, 'Carlos', 'Vazquez', 'Lic. en InformÃ¡tica'),
+(44444444, 'Luis', 'Pinto', 'Ing. Industrial'),
+(55555555, 'Marcela', 'Aguero', 'Ing. en Sistemas');
 
 --
 -- Índices para tablas volcadas
@@ -120,7 +154,7 @@ ALTER TABLE `profesor`
 -- AUTO_INCREMENT de la tabla `alumat`
 --
 ALTER TABLE `alumat`
-  MODIFY `alumat_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `alumat_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `alumnos`
