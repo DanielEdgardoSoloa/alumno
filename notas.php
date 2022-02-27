@@ -7,7 +7,7 @@
                padding-left: 107px; 
             }
             .p2{
-               padding-left: 32px; 
+               padding-left: 72px; 
             }
             .p3{
                padding-left: 23px; 
@@ -38,35 +38,44 @@
         <!-- Bloque de control de botones y enlaces clickeados-->
        <?php
          $controlBtnAct=false;
+         //$mostrar2=null;
          include 'Accion.php';
            if (isset($_POST['Enviar'])){for($i=0;$i<1;$i++){
                $mostrar2=null;
                break;}
            }else if (isset($_POST['Modificar'])) {
-               ModificarP();
+               ModificarN();
+               $mostrar2=null;
+           }else if (isset($_POST['Inicio'])) {
+               $mostrar2=null;
+           }
+           else if (isset($_POST['Volver'])) {
                $mostrar2=null;
            }else if (isset($_POST['Nuevo'])) {
-               InsertarP();
+               InsertarN();
+               $mostrar2=null;
+           }else if (($_GET['accion']==='Notas') )
+               {//$controlBtnAct=true;
                $mostrar2=null;
            }else if (($_GET['accion']==='Actualizar') )
                {$controlBtnAct=true;
                 $mostrar2=null;
-                if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaProfesores.php") {
+                if ($_SERVER["HTTP_SERVER_REFERER"] = "notas.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                   $sql2="SELECT * FROM PROFESOR WHERE prof_dni=".$_GET['id'];
+                   $sql2="SELECT alumat_id, alumat_alu_dni, alumat_mat_cod, alumat_notas FROM alumat WHERE alumat_id=".$_GET['id2'];
                    $resultado2= mysqli_query($conexion, $sql2);
                    $mostrar2= mysqli_fetch_array($resultado2);
                  }
            }else if (($_GET['accion']==='Borrar') )
                {$mostrar2=null;
-                if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaProfesores.php") {
+                if ($_SERVER["HTTP_SERVER_REFERER"] = "notas.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                   $sql2="SELECT * FROM PROFESOR WHERE prof_dni=".$_GET['id'];
+                   $sql2="SELECT * FROM alumat WHERE alumat_id=".$_GET['id2'];
                    $resultado2= mysqli_query($conexion, $sql2);
                    $mostrar2= mysqli_fetch_array($resultado2); 
-                   BorrarP();
+                   BorrarN();
                    $mostrar2=null;
-                   $_GET['id']=null;
+                   $_GET['id2']=null;
                  }   
              }
         ?>
@@ -76,10 +85,12 @@
           <div class="opciones" class="tabla">
             <table border="1" class="table table-dark"> 
               <tr>
+                
                 <td>DNI</td>
                 <td>NOMBRE</td>
-                <td>APELLIDO</td> 
+                <td>APELLIDO</td>
                 <td>MATERIA</td>
+                <td>ID NOTA</td>
                 <td>NOTA</td>
                 <td>ACTUALIZAR</td>
                 <td>BORRAR</td>
@@ -87,7 +98,7 @@
               
               <?php
                 $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                $sql='SELECT alu_dni, alu_nombre, alu_apellido, mat_nombre, alumat_notas FROM alumnos, alumat, materias WHERE alu_dni=alumat_alu_dni AND alumat_mat_cod=mat_cod';
+                $sql='SELECT alu_dni, alu_nombre, alu_apellido, mat_nombre, alumat_id, alumat_notas FROM alumnos, materias,alumat WHERE alu_dni=alumat_alu_dni AND alumat_mat_cod=mat_cod';
                 $resultado= mysqli_query($conexion, $sql);
                 while($mostrar= mysqli_fetch_array($resultado)){
               ?>
@@ -97,8 +108,9 @@
                 <td><?php echo $mostrar[2]?></td>
                 <td><?php echo $mostrar[3]?></td>
                 <td><?php echo $mostrar[4]?></td>
-                <td ><a href="notas.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
-                <td ><a href="notas.php?accion=Borrar&&id=<?php echo $mostrar[0]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
+                <td><?php echo $mostrar[5]?></td>
+                <td ><a href="notas.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>&Actualizar2&&id2=<?php echo $mostrar[4]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
+                <td ><a href="notas.php?accion=Borrar&&id2=<?php echo $mostrar[4]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
               </tr>
               <?php
               }
@@ -108,7 +120,12 @@
             <br/>
             <form action="index.php" method="POST">
                <spam>   
-                 <input type="submit" class="btn btn-primary" name="volver" value="Inicio" class="enviar">
+                 <input type="submit" class="btn btn-primary" name="Inicio" value="Inicio" class="enviar">
+               </spam>    
+            </form>
+            <form action="tablaAlumnos.php" method="POST">
+               <spam>   
+                 <input type="submit" class="btn btn-primary" name="Volver" value="Volver a Alumnos" class="enviar">
                </spam>    
             </form>
         
@@ -117,19 +134,20 @@
         <div class="notas">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p6" class="text-success">NOTAS ALUMNOS </h5>
-            <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
+            <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php echo $mostrar2[0]?>" id="idnota"class="text"></p>
+            <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text"></p>
             <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php echo $mostrar2[2]?>" id="codmateria" class="text"></p>
-            <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[2]?>" id="nota" class="text"></p>
+            <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[3]?>" id="nota" class="text"></p>
             <br/>
             <?php  
             if ($controlBtnAct )
              {?>
             <spam>
-             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarForm()" class="enviar" class="modificar">
+             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarFormN()" class="enviar" class="modificar">
             </spam>
              <?php }else { ?>
             <spam>
-             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarForm()" class="enviar">
+             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarFormN()" class="enviar">
             </spam>
                 <?php } ?>
           </form>  

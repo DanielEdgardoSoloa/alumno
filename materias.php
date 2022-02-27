@@ -43,17 +43,17 @@
                $mostrar2=null;
                break;}
            }else if (isset($_POST['Modificar'])) {
-               ModificarP();
+               ModificarM();
                $mostrar2=null;
            }else if (isset($_POST['Nuevo'])) {
-               InsertarP();
+               InsertarM();
                $mostrar2=null;
            }else if (($_GET['accion']==='Actualizar') )
                {$controlBtnAct=true;
                 $mostrar2=null;
-                if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaProfesores.php") {
+                if ($_SERVER["HTTP_SERVER_REFERER"] = "materias.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                   $sql2="SELECT * FROM PROFESOR WHERE prof_dni=".$_GET['id'];
+                   $sql2="SELECT * FROM MATERIAS WHERE mat_cod=".$_GET['id'];
                    $resultado2= mysqli_query($conexion, $sql2);
                    $mostrar2= mysqli_fetch_array($resultado2);
                  }
@@ -61,10 +61,10 @@
                {$mostrar2=null;
                 if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaProfesores.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
-                   $sql2="SELECT * FROM PROFESOR WHERE prof_dni=".$_GET['id'];
+                   $sql2="SELECT * FROM MATERIAS WHERE mat_cod=".$_GET['id'];
                    $resultado2= mysqli_query($conexion, $sql2);
                    $mostrar2= mysqli_fetch_array($resultado2); 
-                   BorrarP();
+                   BorrarM();
                    $mostrar2=null;
                    $_GET['id']=null;
                  }   
@@ -118,18 +118,18 @@
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p6" class="text-success">Materias </h5>
             <p class="p1" class="text-success">COD. MATERIA:<input type="text" name=codmateria value="<?php echo $mostrar2[0]?>" id="codmateria"class="text"></p>
-            <p class="p4" class="text-success">MATERIA:<input type="text" name="materia" value="<?php echo $mostrar2[2]?>" id="materia" class="text"></p>
+            <p class="p4" class="text-success">MATERIA:<input type="text" name="materia" value="<?php echo $mostrar2[1]?>" id="materia" class="text"></p>
             <p class="p5" class="text-success">DNI PROFESOR:<input type="text" name="dniprofesor" value="<?php echo $mostrar2[2]?>" id="dniprofesor" class="text"></p>
             <br/>
             <?php  
             if ($controlBtnAct )
              {?>
             <spam>
-             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarForm()" class="enviar" class="modificar">
+             <input type="submit" name="Modificar" class="btn btn-warning" value="Modificar" onclick="return EnviarFormM()" class="enviar" class="modificar">
             </spam>
              <?php }else { ?>
             <spam>
-             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarForm()" class="enviar">
+             <input type="submit" name="Nuevo" class="btn btn-success" value="Nuevo" onclick="return EnviarFormM()" class="enviar">
             </spam>
                 <?php } ?>
           </form>  

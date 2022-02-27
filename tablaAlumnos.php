@@ -39,6 +39,13 @@
            }else if (isset($_POST['Modificar'])) {
                Modificar();
                $mostrar2=null;
+           }else if (isset($_POST['Inicio'])) {
+               $mostrar2=null;
+           }
+           else if (isset($_POST['Volver'])) {
+               $mostrar2=null;
+           }else if (isset($_POST['Notas'])) {
+               $mostrar2=null;
            }else if (isset($_POST['Nuevo'])) {
                Insertar();
                $mostrar2=null;
@@ -52,7 +59,8 @@
                    $mostrar2= mysqli_fetch_array($resultado2);
                  }
            }else if (($_GET['accion']==='Borrar') )
-               {$mostrar2=null;
+               {
+                $mostrar2=null;
                 if ($_SERVER["HTTP_SERVER_REFERER"] = "tablaAlumnos.php") {
                    $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
                    $sql2="SELECT * FROM ALUMNOS WHERE alu_dni=".$_GET['id'];
@@ -62,7 +70,7 @@
                    $mostrar2=null;
                    $_GET['id']=null;
                  }   
-             }
+               }
         ?>
       <!-- Bloque de Tabla Alumnos que se actualiza dinámicamente-->   
         <div class="tablaAlumnos">
@@ -75,9 +83,10 @@
                 <td>APELLIDO</td> 
                 <td>ACTUALIZAR</td>
                 <td>BORRAR</td>
+                <td>NOTAS</td>
               </tr>
               <?php
-                $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
+                $conexion=mysqli_connect('localhost','root','','SGA_Belgrano');
                 $sql='SELECT * FROM ALUMNOS';
                 $resultado= mysqli_query($conexion, $sql);
                 while($mostrar= mysqli_fetch_array($resultado)){
@@ -88,6 +97,7 @@
                 <td><?php echo $mostrar[2]?></td>
                 <td ><a href="tablaAlumnos.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
                 <td ><a href="tablaAlumnos.php?accion=Borrar&&id=<?php echo $mostrar[0]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
+                <td ><a href="notas.php?accion=Notas&&id=<?php echo $mostrar[0]?>" class="notas" name="Notas"> <img src="notas1.png"</a></td>
               </tr>
               <?php
               }
@@ -100,7 +110,7 @@
                </spam>    
             </form>
         
-          </div>
+          
         </div>
       <!--Bloque de form para Insert y Update alumnos-->
         <div class="datosPersonales">
