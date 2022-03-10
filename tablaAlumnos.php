@@ -33,22 +33,27 @@
        <?php
          $controlBtnAct=false;
          include 'Accion.php';
+         //$_GET['accion']=null;
            if (isset($_POST['Enviar'])){for($i=0;$i<1;$i++){
                $mostrar2=null;
+               $_GET['accion']=null;
                break;}
            }else if (isset($_POST['Modificar'])) {
                Modificar();
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (isset($_POST['Inicio'])) {
                $mostrar2=null;
            }
            else if (isset($_POST['Volver'])) {
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (isset($_POST['Notas'])) {
                $mostrar2=null;
            }else if (isset($_POST['Nuevo'])) {
                Insertar();
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (($_GET['accion']==='Actualizar') )
                {$controlBtnAct=true;
                 $mostrar2=null;
@@ -116,7 +121,14 @@
         <div class="datosPersonales">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p4" class="text-success">DATOS ALUMNOS </h5>
-            <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
+            <?php 
+            if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text" readonly></p>
+              <?php
+              //$_GET['accion']=null;
+              }else{?>
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
+              <?php } ?>
             <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php echo $mostrar2[1]?>" id="nombre"class="text"></p> 
             <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php echo $mostrar2[2]?>" id="apellido" class="text"></p> 
             <br/>

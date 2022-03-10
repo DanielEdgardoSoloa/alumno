@@ -42,10 +42,12 @@
          include 'Accion.php';
            if (isset($_POST['Enviar'])){for($i=0;$i<1;$i++){
                $mostrar2=null;
+               $_GET['accion']=null;
                break;}
            }else if (isset($_POST['Modificar'])) {
                ModificarN();
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (isset($_POST['Inicio'])) {
                $mostrar2=null;
            }
@@ -54,6 +56,7 @@
            }else if (isset($_POST['Nuevo'])) {
                InsertarN();
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (($_GET['accion']==='Notas') )
                {//$controlBtnAct=true;
                $mostrar2=null;
@@ -134,10 +137,26 @@
         <div class="notas">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p6" class="text-success">NOTAS ALUMNOS </h5>
-            <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php echo $mostrar2[0]?>" id="idnota"class="text"></p>
-            <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text"></p>
-            <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php echo $mostrar2[2]?>" id="codmateria" class="text"></p>
-            <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[3]?>" id="nota" class="text"></p>
+            <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php echo $mostrar2[0]?>" id="idnota"class="text" readonly></p>
+            <!--<p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php //echo $mostrar2[1]?>" id="dni"class="text"></p> -->
+            <?php 
+            if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text" readonly></p>
+              <?php
+              //$_GET['accion']=null;
+              }else{?>
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text"></p>
+              <?php } ?>
+            <!--<p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php //echo $mostrar2[2]?>" id="codmateria" class="text"></p> -->
+            <?php 
+            if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php echo $mostrar2[2]?>" id="codmateria"class="text" readonly></p>
+              <?php
+              //$_GET['accion']=null;
+              }else{?>
+              <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php echo $mostrar2[2]?>" id="codmateria"class="text"></p>
+              <?php } ?>
+            <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[3]?>" id="nota" class="text"></p> 
             <br/>
             <?php  
             if ($controlBtnAct )

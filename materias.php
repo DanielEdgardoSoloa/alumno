@@ -41,13 +41,16 @@
          include 'Accion.php';
            if (isset($_POST['Enviar'])){for($i=0;$i<1;$i++){
                $mostrar2=null;
+               $_GET['accion']=null;
                break;}
            }else if (isset($_POST['Modificar'])) {
                ModificarM();
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (isset($_POST['Nuevo'])) {
                InsertarM();
                $mostrar2=null;
+               $_GET['accion']=null;
            }else if (($_GET['accion']==='Actualizar') )
                {$controlBtnAct=true;
                 $mostrar2=null;
@@ -117,9 +120,17 @@
         <div class="notas">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p6" class="text-success">Materias </h5>
-            <p class="p1" class="text-success">COD. MATERIA:<input type="text" name=codmateria value="<?php echo $mostrar2[0]?>" id="codmateria"class="text"></p>
+            <p class="p1" class="text-success">COD. MATERIA:<input type="text" name=codmateria value="<?php echo $mostrar2[0]?>" id="codmateria"class="text" readonly></p> 
             <p class="p4" class="text-success">MATERIA:<input type="text" name="materia" value="<?php echo $mostrar2[1]?>" id="materia" class="text"></p>
-            <p class="p5" class="text-success">DNI PROFESOR:<input type="text" name="dniprofesor" value="<?php echo $mostrar2[2]?>" id="dniprofesor" class="text"></p>
+            <!--<p class="p5" class="text-success">DNI PROFESOR:<input type="text" name="dniprofesor" value="<?php //echo $mostrar2[2]?>" id="dniprofesor" class="text"></p> -->
+            <?php 
+            if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p5" class="text-success">DNI PROFESOR:<input type="text" name="dniprofesor" value="<?php echo $mostrar2[2]?>" id="dniprofesor"class="text" readonly></p>
+              <?php
+              //$_GET['accion']=null;
+              }else{?>
+              <p class="p5" class="text-success">DNI PROFESOR:<input type="text" name="dniprofesor" value="<?php echo $mostrar2[0]?>" id="dniprofesor"class="text"></p>
+              <?php } ?>
             <br/>
             <?php  
             if ($controlBtnAct )

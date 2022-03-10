@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Inicio</title>
+        <title>Noticias</title>
         <style>
             .container{
                 background-color: green;
@@ -23,9 +23,9 @@
             .noticias{
                 position: relative ;
                 background-color: #6c757d;
-                width: 200px;
+                width: 400px;
                 height: 450px;
-                margin-left: 713px;
+                margin-left: 513px;
                 float: left;
             }
         </style>
@@ -38,36 +38,25 @@
     </head>
     <body class="bg-secondary">
         <div class="container">
-          <h1 class="text-dark">INSTITUTO</h1> 
+          <h1 class="text-dark">NOTICIAS INSTITUTO</h1> 
           <div class="menu">
               <h3 class="text-dark">MENU</h3>
-            <form action="tablaAlumnos.php" method="POST">
+            <form action="index.php" method="POST">
               <br/><br/>
-              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Alumnos" class="enviar" >
-            </form>
-            <form action="tablaProfesores.php" method="POST">
-              <br/><br/>
-              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Profesores" class="enviar" >
-            </form>
-            <form action="materias.php" method="POST">
-              <br/><br/>
-              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Materias" class="enviar" >
-            </form>  
-            <form action="notas.php" method="POST">
-              <br/><br/>
-              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Notas" class="enviar" >
-            </form>  
+              <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Inicio" class="enviar" >
+            </form> 
           </div>
+          <?php
+           $id = $_GET['id'];
+           echo $id;
+          ?>
           <div class="noticias" id='posicion3'>
-             <h3 class="text-dark">NOTICIAS</h3>
-             <ul>
-                 <li><a href="noticias.php?id=1" style="color:black;">Conversatorio sobre redes sociales y herramientas digitales</a> </li><br>
-                 <li><a href="noticias.php?id=2" style="color:black;">Junta Electoral</a> </li><br>
-                 <li><a href="noticias.php?id=3" style="color:black;">Florencia en los LensCulture</a> </li><br>
-                 <li><a href="noticias.php?id=4" style="color:black;">Seleccionado para el 5° Salón provincial de Fotografía</a> </li><br>
-                 <li><a href="noticias.php?id=5" style="color:black;">Concurso sistema Vendimia</a> </li><br>
-          </ul>
+              <h3 class="text-dark">TITULO</h3><br>
+             <p>CONTENIDO</p>
+             
           </div>
         </div>
     </body>
 </html>
+
+

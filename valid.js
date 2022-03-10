@@ -188,7 +188,7 @@ function EnviarFormM(){
         
        }*/  
     
-   if(codmateria.value === null || codmateria.value === ''){
+   /*if(codmateria.value === null || codmateria.value === ''){
        mensajeError.push('Ingrese su Código Materia');
        control = false;
    }else{
@@ -197,7 +197,7 @@ function EnviarFormM(){
           control = false;
        }else{ 
        }
-   }
+   }*/
    if(materia.value === null || materia.value === ''){
        mensajeError.push('Ingrese Materia');
        control = false;
