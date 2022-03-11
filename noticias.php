@@ -46,13 +46,34 @@
               <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Inicio" class="enviar" >
             </form> 
           </div>
-          <?php
-           $id = $_GET['id'];
-           echo $id;
-          ?>
+          
           <div class="noticias" id='posicion3'>
-              <h3 class="text-dark">TITULO</h3><br>
-             <p>CONTENIDO</p>
+              <?php
+              require 'vendor/autoload.php';
+              $id = $_GET['id'];
+              echo $id;
+              // Creo un alias del namespace
+              use MongoDB\Client as Mongo;
+              // Crea una instancia del driver MongoDB
+              $mongo= new Mongo("mongodb://localhost:27017");
+              // Selecciona la base de datos llamada "instituto"
+              $dbInstituto = $mongo->instituto;
+              // Selecciona la colección llamada "noticias" de la base de datos "instituto"
+              $noticias = $dbInstituto->noticias;
+              /*try {
+                  $connection = new Mongo();
+                  $database = $conection->selectDb("instituto");
+                  $collection = $database->selecCollection("noticias");
+              } catch (MongoConnectionException $ex) {
+                  die("Falla conexion database Instituto" . $ex->getMessage());
+              }
+              $noticias = $collection->findOne(array('_id' => new MongoId($id)));*/
+              //$collection = (new MongoDB\Client)->instituto->noticias;
+
+              $cursor = $noticias->findOne(['_id' => $id]);
+              ?>
+              <h3 class="text-dark"><?php echo $cursor['Titulo']; ?></h3><br>
+             <p><?php echo $cursor['Contenido']; ?></p>
              
           </div>
         </div>
