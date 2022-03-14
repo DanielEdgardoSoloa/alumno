@@ -3,8 +3,18 @@
        <meta charset="UTF-8">
        <title>Notas</title> 
        <style>
+            .container{
+                margin-top: 30px;
+                background-color: gray;
+                background-image: url(instituto1.jpg);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                height: 550px;
+            }
             .p1{
-               padding-left: 107px; 
+               padding-left: 105px; 
             }
             .p2{
                padding-left: 72px; 
@@ -13,10 +23,10 @@
                padding-left: 23px; 
             }
             .p4{
-                padding-left: 5px;
+                padding-left: 4px;
             }
             .p5{
-                padding-left: 95px;
+                padding-left: 92px;
             }
             .p6{
                 padding-left: 137px;
@@ -28,6 +38,20 @@
             spam{
                 margin-left: 160px;
             }
+            .notas{
+                margin-top: 0px;
+                margin-left: 10Px;
+                width: 700px;
+                height: 500px;
+                float: left
+            }
+            .datosNotas{
+                margin-top: 200px;
+                margin-left: 50Px;
+                width: 350px;
+                height: 300px;
+                float: left
+            }
        </style>
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -35,6 +59,7 @@
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
     <body class="bg-secondary">
+        <div class="container">
         <!-- Bloque de control de botones y enlaces clickeados-->
        <?php
          $controlBtnAct=false;
@@ -57,9 +82,9 @@
                InsertarN();
                $mostrar2=null;
                $_GET['accion']=null;
-           }else if (($_GET['accion']==='Notas') )
+           /*}else if (($_GET['accion']==='Notas') )
                {//$controlBtnAct=true;
-               $mostrar2=null;
+               $mostrar2=null;*/
            }else if (($_GET['accion']==='Actualizar') )
                {$controlBtnAct=true;
                 $mostrar2=null;
@@ -86,14 +111,49 @@
         <div class="notas">
           <h1>Notas Alumnos</h1>
           <div class="opciones" class="tabla">
-            <table border="1" class="table table-dark"> 
+            <?php
+            if (($_GET['accion']==='Notas') ){?>
+                <table border="1" class="table table-dark"> 
               <tr>
                 
                 <td>DNI</td>
                 <td>NOMBRE</td>
                 <td>APELLIDO</td>
                 <td>MATERIA</td>
-                <td>ID NOTA</td>
+                <!--<td>ID NOTA</td> -->
+                <td>NOTA</td>
+                <td>ACTUALIZAR</td>
+                <td>BORRAR</td>
+              </tr>
+              
+              <?php
+              echo $_GET['id'];
+                $conexion=mysqli_connect('localhost','root','','sga_Belgrano');
+                $sql='SELECT alu_dni, alu_nombre, alu_apellido, mat_nombre, alumat_id, alumat_notas FROM alumnos, materias,alumat WHERE alu_dni=alumat_alu_dni AND alumat_mat_cod=mat_cod AND alu_dni='.$_GET['id'];
+                $resultado= mysqli_query($conexion, $sql);
+                while($mostrar= mysqli_fetch_array($resultado)){
+              ?>
+              <tr>
+                <td><?php echo $mostrar[0]?></td>
+                <td><?php echo $mostrar[1]?></td>
+                <td><?php echo $mostrar[2]?></td>
+                <td><?php echo $mostrar[3]?></td>
+                <!--<td><?php //echo $mostrar[4]?></td> -->
+                <td><?php echo $mostrar[5]?></td>
+                <td ><a href="notas.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>&Actualizar2&&id2=<?php echo $mostrar[4]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
+                <td ><a href="notas.php?accion=Borrar&&id2=<?php echo $mostrar[4]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
+              </tr>
+              <?php
+              }
+            }else{?>
+              <table border="1" class="table table-dark"> 
+              <tr>
+                
+                <td>DNI</td>
+                <td>NOMBRE</td>
+                <td>APELLIDO</td>
+                <td>MATERIA</td>
+                <!--<td>ID NOTA</td> -->
                 <td>NOTA</td>
                 <td>ACTUALIZAR</td>
                 <td>BORRAR</td>
@@ -110,13 +170,14 @@
                 <td><?php echo $mostrar[1]?></td>
                 <td><?php echo $mostrar[2]?></td>
                 <td><?php echo $mostrar[3]?></td>
-                <td><?php echo $mostrar[4]?></td>
+                <!--<td><?php //echo $mostrar[4]?></td> -->
                 <td><?php echo $mostrar[5]?></td>
                 <td ><a href="notas.php?accion=Actualizar&&id=<?php echo $mostrar[0]?>&Actualizar2&&id2=<?php echo $mostrar[4]?>" class="modificar" name="Actualizar"> <img src="editar1.png"</a> </td>
                 <td ><a href="notas.php?accion=Borrar&&id2=<?php echo $mostrar[4]?>" class="eliminar" name="Borrar"> <img src="eliminar1.png"</a></td>
               </tr>
               <?php
               }
+            }
               ?>
               
             </table>
@@ -134,13 +195,14 @@
         
           </div>
         </div>
-        <div class="notas">
+        <div class="datosNotas">
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p6" class="text-success">NOTAS ALUMNOS </h5>
-            <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php echo $mostrar2[0]?>" id="idnota"class="text" readonly></p>
+            <!--<p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php //echo $mostrar2[0]?>" id="idnota"class="text" readonly></p>
             <!--<p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php //echo $mostrar2[1]?>" id="dni"class="text"></p> -->
             <?php 
-            if (($_GET['accion']==='Actualizar') ){?> 
+            /*if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php echo $mostrar2[0]?>" id="idnota"class="text" readonly></p>
               <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text" readonly></p>
               <?php
               //$_GET['accion']=null;
@@ -148,15 +210,20 @@
               <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text"></p>
               <?php } ?>
             <!--<p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php //echo $mostrar2[2]?>" id="codmateria" class="text"></p> -->
-            <?php 
+            <?php */
             if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php echo $mostrar2[0]?>" id="idnota"class="text" readonly></p>
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[1]?>" id="dni"class="text" readonly></p>
               <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php echo $mostrar2[2]?>" id="codmateria"class="text" readonly></p>
+              <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[3]?>" id="nota" class="text"></p> 
               <?php
               //$_GET['accion']=null;
               }else{?>
-              <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php echo $mostrar2[2]?>" id="codmateria"class="text"></p>
+              <p class="p2" class="text-success">ID NOTA:<input type="text" name="idnota" value="<?php //echo $mostrar2[0]?>" id="idnota"class="text" readonly></p>
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php //echo $mostrar2[1]?>" id="dni"class="text"></p>
+              <p class="p4" class="text-success">CODIGO MATERIA:<input type="text" name="codmateria" value="<?php //echo $mostrar2[2]?>" id="codmateria"class="text" ></p>
+              <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php //echo $mostrar2[3]?>" id="nota" class="text"></p> 
               <?php } ?>
-            <p class="p5" class="text-success">NOTA:<input type="text" name="nota" value="<?php echo $mostrar2[3]?>" id="nota" class="text"></p> 
             <br/>
             <?php  
             if ($controlBtnAct )
@@ -173,7 +240,8 @@
             <div id="error" class="negrita">
             </div>    
         </div>
-      <script src="valid.js"></script> 
+      <script src="valid.js"></script>
+        </div>
     </body>
 </html>
 

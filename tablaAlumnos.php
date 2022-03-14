@@ -3,14 +3,24 @@
        <meta charset="UTF-8">
        <title>Tabla Alumnos</title> 
        <style>
+            .container{
+                margin-top: 30px;
+                background-color: gray;
+                background-image: url(instituto1.jpg);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                height: 550px;
+            }
             .p1{
                padding-left: 67px; 
             }
             .p2{
-               padding-left: 32px; 
+               padding-left: 29px; 
             }
             .p3{
-               padding-left: 23px; 
+               padding-left: 24px; 
             }
             .p4{
                 padding-left: 100px;
@@ -22,13 +32,31 @@
             spam{
                 margin-left: 160px;
             }
+            .tablaAlumnos{
+                margin-top: 0px;
+                margin-left: 10Px;
+                width: 700px;
+                height: 500px;
+                float: left
+            }
+            .datosPersonales{
+                margin-top: 200px;
+                margin-left: 50Px;
+                width: 300px;
+                height: 300px;
+                float: left
+            }
+            .tabla{
+                margin-top: 100px;
+            }
        </style>
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-secondary">
+    <body class="bg-secondary" >
+        <div class="container">
      <!-- Bloque de control de botones y enlaces clickeados-->
        <?php
          $controlBtnAct=false;
@@ -114,7 +142,7 @@
                  <input type="submit" class="btn btn-primary" name="volver" value="Inicio" class="enviar">
                </spam>    
             </form>
-        
+          </div>
           
         </div>
       <!--Bloque de form para Insert y Update alumnos-->
@@ -122,15 +150,30 @@
           <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
             <h5 class="p4" class="text-success">DATOS ALUMNOS </h5>
             <?php 
+            /*echo $_GET['accion'];
+            //echo $mostrar2[0];
             if (($_GET['accion']==='Actualizar') ){?> 
               <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text" readonly></p>
               <?php
               //$_GET['accion']=null;
               }else{?>
-              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text"></p>
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php //echo $mostrar2[0]?>" id="dni"class="text"></p>
               <?php } ?>
             <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php echo $mostrar2[1]?>" id="nombre"class="text"></p> 
             <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php echo $mostrar2[2]?>" id="apellido" class="text"></p> 
+            <br/>*/
+            
+            if (($_GET['accion']==='Actualizar') ){?> 
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php echo $mostrar2[0]?>" id="dni"class="text" readonly></p>
+              <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php echo $mostrar2[1]?>" id="nombre"class="text"></p> 
+              <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php echo $mostrar2[2]?>" id="apellido" class="text"></p> 
+              <?php
+              //$_GET['accion']=null;
+              }else{?>
+              <p class="p1" class="text-success">DNI:<input type="text" name="dni" value="<?php //echo $mostrar2[0]?>" id="dni"class="text"></p>
+              <p class="p2" class="text-success">NOMBRE:<input type="text" name="nombre" value="<?php //echo $mostrar2[1]?>" id="nombre"class="text"></p> 
+              <p class="p3" class="text-success">APELLIDO:<input type="text" name="apellido" value="<?php //echo $mostrar2[2]?>" id="apellido" class="text"></p> 
+              <?php } ?>
             <br/>
             <?php  
             if ($controlBtnAct )
@@ -147,7 +190,8 @@
             <div id="error" class="negrita">
             </div>    
         </div>
-      <script src="valid.js"></script>   
+      <script src="valid.js"></script> 
+        </div>
     </body>
 </html>
 

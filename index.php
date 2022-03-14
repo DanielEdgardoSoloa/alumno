@@ -6,7 +6,8 @@
         <title>Inicio</title>
         <style>
             .container{
-                background-color: green;
+                margin-top: 30px;
+                background-color: gray;
                 background-image: url(instituto1.jpg);
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -15,14 +16,14 @@
                 height: 550px;
             }
             .menu{
-                background-color: #6c757d;
+                
                 width: 200px;
                 height: 450px;
                 float: left;
             }
             .noticias{
                 position: relative ;
-                background-color: #6c757d;
+                background-color: #BEAF93;
                 width: 200px;
                 height: 450px;
                 margin-left: 713px;
@@ -61,11 +62,11 @@
           <div class="noticias" id='posicion3'>
              <h3 class="text-dark">NOTICIAS</h3>
              <ul>
-                 <li><a href="noticias.php?id=1" style="color:black;">Conversatorio sobre redes sociales y herramientas digitales</a> </li><br>
-                 <li><a href="noticias.php?id=2" style="color:black;">Junta Electoral</a> </li><br>
-                 <li><a href="noticias.php?id=3" style="color:black;">Florencia en los LensCulture</a> </li><br>
-                 <li><a href="noticias.php?id=4" style="color:black;">Seleccionado para el 5° Salón provincial de Fotografía</a> </li><br>
-                 <li><a href="noticias.php?id=5" style="color:black;">Concurso sistema Vendimia</a> </li><br>
+                 <li><a href="noticias.php?titulo=Conversatorio sobre redes sociales y herramientas digitales." style="color:black;">Conversatorio sobre redes sociales y herramientas digitales.</a> </li><br>
+                 <li><a href="noticias.php?titulo=Junta Electoral." style="color:black;">Junta Electoral.</a> </li><br>
+                 <li><a href="noticias.php?titulo=Florencia en los LensCulture." style="color:black;">Florencia en los LensCulture.</a> </li><br>
+                 <li><a href="noticias.php?titulo=Seleccionado para el 5° Salón provincial de Fotografía." style="color:black;">Seleccionado para el 5° Salón provincial de Fotografía.</a> </li><br>
+                 <li><a href="noticias.php?titulo=Concurso sistema Vendimia." style="color:black;">Concurso sistema Vendimia.</a> </li><br>
           </ul>
           </div>
         </div>

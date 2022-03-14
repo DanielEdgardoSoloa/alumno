@@ -6,6 +6,7 @@
         <title>Noticias</title>
         <style>
             .container{
+                margin-top: 30px;
                 background-color: green;
                 background-image: url(instituto1.jpg);
                 background-position: center center;
@@ -15,14 +16,13 @@
                 height: 550px;
             }
             .menu{
-                background-color: #6c757d;
                 width: 200px;
                 height: 450px;
                 float: left;
             }
             .noticias{
                 position: relative ;
-                background-color: #6c757d;
+                background-color: #BEAF93;
                 width: 400px;
                 height: 450px;
                 margin-left: 513px;
@@ -50,30 +50,25 @@
           <div class="noticias" id='posicion3'>
               <?php
               require 'vendor/autoload.php';
-              $id = $_GET['id'];
-              echo $id;
-              // Creo un alias del namespace
-              use MongoDB\Client as Mongo;
-              // Crea una instancia del driver MongoDB
-              $mongo= new Mongo("mongodb://localhost:27017");
-              // Selecciona la base de datos llamada "instituto"
-              $dbInstituto = $mongo->instituto;
-              // Selecciona la colección llamada "noticias" de la base de datos "instituto"
-              $noticias = $dbInstituto->noticias;
-              /*try {
-                  $connection = new Mongo();
-                  $database = $conection->selectDb("instituto");
-                  $collection = $database->selecCollection("noticias");
-              } catch (MongoConnectionException $ex) {
-                  die("Falla conexion database Instituto" . $ex->getMessage());
-              }
-              $noticias = $collection->findOne(array('_id' => new MongoId($id)));*/
-              //$collection = (new MongoDB\Client)->instituto->noticias;
-
-              $cursor = $noticias->findOne(['_id' => $id]);
+              
+              
+              /*$connection = new MongoDB\Client('mongodb://localhost:27017');
+              $collection = $connection->instituto->noticias;
+              $result = $collection->findOne(['_id' => $id]);
+              //$cursor = $noticias->findOne(['_id' => $id]);*/
+              
+              try{
+                  $titulo = $_GET['titulo'];
+                  //echo $id;
+                  $collection = (new MongoDB\Client)->instituto->noticias;
+                  $document = $collection->findOne(['Titulo'=> $titulo]);
+                  
+                  //var_dump($document);
+              }catch(Exception $e){echo 'falló conexion';}
               ?>
-              <h3 class="text-dark"><?php echo $cursor['Titulo']; ?></h3><br>
-             <p><?php echo $cursor['Contenido']; ?></p>
+              <h3 class="text-dark"><?php echo $document['Titulo']; ?></h3><br>
+             <p><?php echo $document['Contenido']; 
+             //echo $id;?></p>
              
           </div>
         </div>
