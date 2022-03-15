@@ -52,23 +52,18 @@
               require 'vendor/autoload.php';
               
               
-              /*$connection = new MongoDB\Client('mongodb://localhost:27017');
-              $collection = $connection->instituto->noticias;
-              $result = $collection->findOne(['_id' => $id]);
-              //$cursor = $noticias->findOne(['_id' => $id]);*/
-              
               try{
-                  $titulo = $_GET['titulo'];
-                  //echo $id;
+                  $ids = $_GET['id'];
+                  $id = (int)$ids;
                   $collection = (new MongoDB\Client)->instituto->noticias;
-                  $document = $collection->findOne(['Titulo'=> $titulo]);
+                  $document = $collection->findOne(['_id'=> $id]);
                   
-                  //var_dump($document);
+                  //var_dump($document);*/
               }catch(Exception $e){echo 'falló conexion';}
               ?>
               <h3 class="text-dark"><?php echo $document['Titulo']; ?></h3><br>
              <p><?php echo $document['Contenido']; 
-             //echo $id;?></p>
+             ?></p>
              
           </div>
         </div>

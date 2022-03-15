@@ -59,6 +59,7 @@
               <input type="submit" name="Enviar" class="btn btn-primary" value="Ir a Notas" class="enviar" >
             </form>  
           </div>
+          <!--
           <div class="noticias" id='posicion3'>
              <h3 class="text-dark">NOTICIAS</h3>
              <ul>
@@ -67,7 +68,32 @@
                  <li><a href="noticias.php?titulo=Florencia en los LensCulture." style="color:black;">Florencia en los LensCulture.</a> </li><br>
                  <li><a href="noticias.php?titulo=Seleccionado para el 5° Salón provincial de Fotografía." style="color:black;">Seleccionado para el 5° Salón provincial de Fotografía.</a> </li><br>
                  <li><a href="noticias.php?titulo=Concurso sistema Vendimia." style="color:black;">Concurso sistema Vendimia.</a> </li><br>
-          </ul>
+             </ul>
+          </div> -->
+          
+          <div class="noticias" id='posicion3'>
+             <h3 class="text-dark">NOTICIAS</h3>
+             <?php
+              require 'vendor/autoload.php';
+              try{
+                  //$titulo = $_GET['titulo'];
+                  //echo $id;
+                  $collection = (new MongoDB\Client)->instituto->noticias;
+                  $cursor = $collection->find(); ?>
+                  
+                  <ul>
+                      <?php
+                      foreach ($cursor as $document) {?>
+                    <li><a href="noticias.php?id=<?php echo $document['_id']?>" style="color:black;"><?php echo $document['Titulo']?></a> </li><br>
+                      <?php
+                      }
+                      ?>
+                    
+                  </ul>
+             <?php
+              }catch(Exception $e){echo 'falló conexion';}
+              ?>
+             
           </div>
         </div>
     </body>
